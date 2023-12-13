@@ -1,0 +1,27 @@
+form{
+    margin-right: 1300px;
+    padding-right:100px;
+    border:1px solid #000;
+    padding-left: 10px;
+    float:left;
+}
+
+label{
+    display: block;
+    margin:0.5rem 0;
+}
+
+input{
+    margin:0.5rem 0;
+    width:100%;
+}
+#submit{
+    border:1px solid #000;
+    width:auto;
+    cursor: pointer;
+}
+
+#submit:hover{
+    background-color: rgb(163, 163, 163);
+    font-weight: 700;
+}

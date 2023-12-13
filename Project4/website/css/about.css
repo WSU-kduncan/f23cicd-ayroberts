@@ -1,0 +1,20 @@
+table, th,td{
+    border:1px solid #000;
+    width:900px;
+}
+table{
+    border-collapse: collapse;
+    margin-left: 0px;
+    text-align: left;
+}
+
+tbody th:first-of-type
+{
+    background-color: rgb(55, 126, 37);
+    
+}
+
+td{
+    vertical-align: top;
+    background-color: rgba(255, 255, 255, 0.41);
+}

@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/* 
+    Alex Roberts
+    Dec. 9th 2022 
+*/
+
+section{
+    background-color:#0044199c;
+    width:auto;
+    border: 1px solid black;
+    margin:0px,auto,0px,auto;
+    padding:11px;
+}
+
+header{
+    background-color:rgba(28, 107, 8, 0.6);
+    color:rgb(255,255,255);
+    text-shadow:
+		-2px -2px 0 #000,
+		2px -2px 0 #000,
+		-2px 2px 0 #000,
+		2px 2px 0 #000;
+    height:200px;
+    font:arial;
+    font-size:2.25em;
+}
+
+header h1{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align:center;
+    vertical-align:middle;
+    line-height:250px;
+    margin:0px;
+    padding:0px;
+}
+
+nav{
+    height:35px;
+    margin:5px,0,5px,0;
+    background-color:rgba(0,0,0,.6);
+    font-family:Calibri;
+    font-style:bold;
+    font-size:1.25em;
+    text-align:center;
+    text-decoration:none;
+
+}
+
+nav a{
+    margin:15px;
+    padding:0px;
+    vertical-align:middle;
+    text-decoration:none;
+    color:#FFFFF7;
+}
+
+nav a:hover{
+    color:#031a09;
+    transition: all .5s linear;
+}
+
+img{
+    width:250px;
+    height:250px;
+    object-fit:contain;
+}
+
+
+footer{
+    height:50px;
+    margin-top:5px;
+    background-color:rgba(0,0,0,.6);
+    text-align: right;
+    vertical-align:middle;
+    font-family:Calibri;
+    font-style:bold;
+    font-size:0.85em;
+    color:rgb(255,255,255);
+    padding-right:15px;
+}
+
+p{
+    font-size: large;
+}
+
+em{
+    line-height: 15px;
+}
+
+button{
+    background-color: #225b31;
+    border-color: rgb(71, 138, 116);
+}
+
+button:hover{
+    background-color:white;
+    transition: all .5s linear;
+}
+
+.hide{
+    visibility:hidden;
+}
+
+.reveal{
+    visibility:visible;
+}
