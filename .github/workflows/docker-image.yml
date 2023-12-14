@@ -1,59 +1,42 @@
-name: Docker Image CI
+name: CI
 
 on:
   push:
     tags:
-      - '*'
+      - 'v*.*.*'
 
 jobs:
-
-  build:
-
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-  
-    -
-      name: Checkout
-      uses: actions/checkout@v4
-
-    
-    - 
-      name: Docker Metadata action
-      uses: docker/metadata-action@v5.3.0
-      id: meta
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        # set latest tag for master branch
-        flavor: latest=true
-        tags: |
-          
-          type=edge,branch=main,prefix=,suffix=
-          type=ref,event=branch,prefix=,suffix=
-          type=ref,event=pr,prefix=,suffix=
-          type=semver,pattern={{version}},prefix=,suffix=
-          
-    
-    - 
-      name: Docker Login
-      uses: docker/login-action@v3.0.0
-      with:
-    
-    # Username used to log against the Docker registry
-        username: ${{ secrets.DOCKER_USERNAME }}
-    # Password or personal access token used to log against the Docker registry
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    -
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      
+      -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-    -
-        name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            obeyeddog/project-4-website:latest
-            obeyeddog/project-4-website:${{ steps.meta.outputs.version }}
-          labels: ${{ steps.meta.outputs.labels }}
+        uses: docker/setup-buildx-action@v1
+      
+      -
+        name: Login to Docker Hub
+        run: docker login --username=$DOCKERHUB_USERNAME --password=$DOCKERHUB_TOKEN
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      -
+        name: Build and tag Docker image
+        run: |
+          docker build -t website .
+          IMAGE_TAG=$(echo v${GITHUB_REF#refs/tags/})
+          docker tag website obeyeddog/project-4-website:$IMAGE_TAG
+        env:
+          GITHUB_REF: ${{ github.ref }}
+      
+      -
+        name: Push Docker image to Docker Hub
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF#refs/tags/v}")
+          docker push obeyeddog/project-4-website:$IMAGE_TAG
+        env:
+          GITHUB_REF: ${{ github.ref }}
