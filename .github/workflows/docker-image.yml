@@ -1,22 +1,35 @@
-name: Docker & Push
+name: Project 4 - CI
 
 on:
   push:
     branches:
-      - main  
+      - 'main'
+  release:
+    types: [published]
+
+env:
+  DOCKER_HUB_REPO: obeyeddog/project-4-website
 
 jobs:
-  build_and_push:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout repo to runner
         uses: actions/checkout@v2
-      
-      - name: Login to DockerHub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      
-      - name: Build and Push Docker Image
-        run: |
-          docker build -t obeyeddog/project-4-website:latest .
-          docker push obeyeddog/project-4-website:latest
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+          repository: obeyeddog/project-4-website
+          tag_with_ref: true
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/obeyeddog/project-4-website
