@@ -91,6 +91,3 @@ Setting a Secret:
 # Part 3  
   
 ![Image](/img/flow.png) 
-
-test
-
