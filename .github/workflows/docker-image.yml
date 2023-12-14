@@ -1,0 +1,22 @@
+name: Docker & Push
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t obeyeddog/project-4-website:latest .
+          docker push obeyeddog/project-4-website:latest
