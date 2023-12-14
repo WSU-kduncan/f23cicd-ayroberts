@@ -28,8 +28,15 @@ jobs:
         name: Build and tag Docker image
         run: |
           docker build -t website .
-          docker tag website obeyeddog/project-4-website:p4
+          IMAGE_TAG=$(echo v${GITHUB_REF#refs/tags/})
+          docker tag website obeyeddog/project-4-website:$IMAGE_TAG
+        env:
+          GITHUB_REF: ${{ github.ref }}
       
       -
         name: Push Docker image to Docker Hub
-        run: docker push obeyeddog/project-4-website:p4
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF#refs/tags/v}")
+          docker push obeyeddog/project-4-website:$IMAGE_TAG
+        env:
+          GITHUB_REF: ${{ github.ref }}
