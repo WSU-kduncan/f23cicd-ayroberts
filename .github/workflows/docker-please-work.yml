@@ -36,7 +36,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: project5/f23cicd-ayroberts
+          images: obeyeddog/f23cicd-ayroberts
           tags: |
             type=ref,event=branch
             type=semver,pattern={{major}}.{{minor}}
