@@ -1,6 +1,6 @@
 # Project 5
 
-# Part 1  
+## Part 1  
       
 ### CD Project Overview
 - **What**: Managing a Continuous Deployment (CD) project for applications
@@ -23,6 +23,27 @@ GitHub workflow:
 
 ### Link to Docker Hub Repository:
 [Docker Repo](https://hub.docker.com/r/obeyeddog/f23cicd-ayroberts/) 
+  
 
- 
+## Part 2  
+  
+docker prerequisite: ```sudo amazon-linux-extras install docker``` (need this??)
+install docker: ```sudo yum install -y docker```
+this is always good: ```sudo systemctl enable docker```  
+  
+pull my repo: ```sudo docker pull obeyeddog/f23cicd-ayroberts```  
+  
+[image]
+
+and run it: ```sudo docker run obeyeddog/f23cicd-ayroberts```
+
+[image proof]  
+  
+As you can see, it didn't work. It's very disappointing to me, seeing as how this is something I've gotten to work in the past. I got this to work on Project 4.
+
+
+
+
+
+
 
