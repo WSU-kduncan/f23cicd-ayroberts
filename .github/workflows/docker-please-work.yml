@@ -5,13 +5,12 @@ on:
     branches:
       - 'main'
     tags:
-     -"v*.*.*"
+      - 'v*.*.*' # Trigger on tags
   pull_request:
     branches:
       - 'main'
-      
   workflow_dispatch:
-  
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -42,11 +41,13 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
 
-      - name: Build and Push Docker image
+      - name: build and push
         uses: docker/build-push-action@v2
         with:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            obeyeddog/f23cicd-ayroberts:latest
           labels: ${{ steps.meta.outputs.labels }}
