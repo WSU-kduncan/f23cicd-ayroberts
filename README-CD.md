@@ -27,20 +27,58 @@ GitHub workflow:
 
 ## Part 2  
   
-docker prerequisite: ```sudo amazon-linux-extras install docker``` (need this??)
-install docker: ```sudo yum install -y docker```
+## Install Docker  
+docker prerequisite: ```sudo amazon-linux-extras install docker``` (need this??)  
+install docker: ```sudo yum install -y docker```  
 this is always good: ```sudo systemctl enable docker```  
-  
 pull my repo: ```sudo docker pull obeyeddog/f23cicd-ayroberts```  
   
 [image]
-
+  
 and run it: ```sudo docker run obeyeddog/f23cicd-ayroberts```
-
+  
 [image proof]  
   
-As you can see, it didn't work. It's very disappointing to me, seeing as how this is something I've gotten to work in the past. I got this to work on Project 4.
+As you can see, it didn't work. It's very disappointing to me, seeing as how this is something I've gotten to work in the past.  
+  
+## Container Restart Script  
+  
+### Description  
+Restarts the Docker container. It stops the container, pulls the latest image from DockerHub, and restarts the container with the updated image.
 
+### Script Content Explained
+
+```bash
+#!/bin/bash
+
+# Stop the running container
+docker stop obeyeddog/f23cicd-ayroberts
+
+# Remove the existing container
+docker rm obeyeddog/f23cicd-ayroberts
+
+# Pull the latest image from DockerHub
+docker pull obeyeddog/f23cicd-ayroberts:latest
+
+# Run the container with the latest image
+docker run -d --name obeyeddog/f23cicd-ayroberts obeyeddog/f23cicd-ayroberts:latest
+```
+## Webook  
+### Setting up Webhook  
+
+```wget https://github.com/adnanh/webhook/releases/download/2.8.1/webhook-linux-amd64.tar.gz```  
+```tar -xzf webhook-linux-amd64.tar.gz```  
+Move to a globally accessible place ```sudo mv webhook-linux-amd64 /usr/local/bin/webhook``` 
+
+Start the webhook: ```webhook -hooks deployment/hooks.json```  
+  
+**Webhook Task Definition File**
+
+- **Description:** This task definition named "restart_container" executes the "./pull-script.sh" script.  
+  
+It runs from the directory "/deployment" 
+
+## See proof video. 
 
 
 
