@@ -8,8 +8,7 @@
 - **Tools Used**: GitHub Actions, Docker.
   
   
-![Image](/img/diagram.PNG)  
-  
+![Image](/img/diagram.png)  
   
 
 ### How to Generate a Tag
@@ -85,9 +84,10 @@ Start the webhook: ```webhook -hooks deployment/hooks.json```
   
 **Webhook Task Definition File**
 
-- **Description:** This task definition named "restart_container" executes the "./pull-script.sh" script.  
+- **Description:** Task definition named "restart_container" executes the "./pull-script.sh" script.  
+- It runs from the directory "/deployment" 
   
-It runs from the directory "/deployment" 
+  
 
 ## See proof video. 
 
