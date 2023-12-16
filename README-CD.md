@@ -37,7 +37,7 @@ install docker: ```sudo yum install -y docker```
 this is always good: ```sudo systemctl enable docker```  
 pull my repo: ```sudo docker pull obeyeddog/f23cicd-ayroberts```  
   
-![Image](/img/success.PNG)
+![Image](/img/success1.PNG)
   
 and run it: ```sudo docker run obeyeddog/f23cicd-ayroberts```
   
