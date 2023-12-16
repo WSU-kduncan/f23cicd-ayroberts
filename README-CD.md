@@ -6,6 +6,11 @@
 - **What**: Managing a Continuous Deployment (CD) project for applications
 - **Why**: Automating the process of building and pushing Docker images to Docker Hub when there are new releases, because it's cool.
 - **Tools Used**: GitHub Actions, Docker.
+  
+  
+![Image](/img/diagram.PNG)  
+  
+  
 
 ### How to Generate a Tag
 Create a tag:
@@ -33,14 +38,19 @@ install docker: ```sudo yum install -y docker```
 this is always good: ```sudo systemctl enable docker```  
 pull my repo: ```sudo docker pull obeyeddog/f23cicd-ayroberts```  
   
-[image]
+![Image](/img/success.PNG)
   
 and run it: ```sudo docker run obeyeddog/f23cicd-ayroberts```
   
-[image proof]  
+![Image](/img/failure.PNG) 
   
 As you can see, it didn't work. It's very disappointing to me, seeing as how this is something I've gotten to work in the past.  
+    
   
+
+![Image](/img/running.PNG)  
+  
+
 ## Container Restart Script  
   
 ### Description  
@@ -62,8 +72,9 @@ docker pull obeyeddog/f23cicd-ayroberts:latest
 
 # Run the container with the latest image
 docker run -d --name obeyeddog/f23cicd-ayroberts obeyeddog/f23cicd-ayroberts:latest
-```
-## Webook  
+```  
+
+## Webhook  
 ### Setting up Webhook  
 
 ```wget https://github.com/adnanh/webhook/releases/download/2.8.1/webhook-linux-amd64.tar.gz```  
