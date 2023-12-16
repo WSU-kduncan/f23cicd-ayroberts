@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker pull obeyeddog/f23cicd-ayroberts:latest
+docker stop obeyeddog/f23cicd-ayroberts
+docker rm obeyeddog/f23cicd-ayroberts
+# Run updated image
+docker run -d --name obeyeddog/f23cicd-ayroberts obeyeddog/f23cicd-ayroberts:latest
+echo "Container has been restarted"
